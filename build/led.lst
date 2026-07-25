@@ -1,0 +1,396 @@
+ARM GAS  C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"led.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.LED_UpdateLatch,"ax",%progbits
+  20              		.align	1
+  21              		.global	LED_UpdateLatch
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	LED_UpdateLatch:
+  27              	.LFB329:
+  28              		.file 1 "Core/Src/led.c"
+   1:Core/Src/led.c **** ﻿#include "led.h"
+   2:Core/Src/led.c **** 
+   3:Core/Src/led.c **** static const uint16_t led_pins[8] = {
+   4:Core/Src/led.c ****     GPIO_PIN_8, GPIO_PIN_9, GPIO_PIN_10, GPIO_PIN_11,
+   5:Core/Src/led.c ****     GPIO_PIN_12, GPIO_PIN_13, GPIO_PIN_14, GPIO_PIN_15
+   6:Core/Src/led.c **** };
+   7:Core/Src/led.c **** 
+   8:Core/Src/led.c **** void LED_UpdateLatch(void)
+   9:Core/Src/led.c **** {
+  29              		.loc 1 9 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 10B5     		push	{r4, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 4, -8
+  37              		.cfi_offset 14, -4
+  10:Core/Src/led.c ****     HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_SET);
+  38              		.loc 1 10 5 view .LVU1
+  39 0002 064C     		ldr	r4, .L3
+  40 0004 0122     		movs	r2, #1
+  41 0006 0421     		movs	r1, #4
+  42 0008 2046     		mov	r0, r4
+  43 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+  44              	.LVL0:
+  11:Core/Src/led.c ****     HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET);
+  45              		.loc 1 11 5 view .LVU2
+  46 000e 0022     		movs	r2, #0
+  47 0010 0421     		movs	r1, #4
+ARM GAS  C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s 			page 2
+
+
+  48 0012 2046     		mov	r0, r4
+  49 0014 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  50              	.LVL1:
+  12:Core/Src/led.c **** }
+  51              		.loc 1 12 1 is_stmt 0 view .LVU3
+  52 0018 10BD     		pop	{r4, pc}
+  53              	.L4:
+  54 001a 00BF     		.align	2
+  55              	.L3:
+  56 001c 000C0048 		.word	1207962624
+  57              		.cfi_endproc
+  58              	.LFE329:
+  60              		.section	.text.LED_AllOff,"ax",%progbits
+  61              		.align	1
+  62              		.global	LED_AllOff
+  63              		.syntax unified
+  64              		.thumb
+  65              		.thumb_func
+  67              	LED_AllOff:
+  68              	.LFB330:
+  13:Core/Src/led.c **** 
+  14:Core/Src/led.c **** void LED_AllOff(void)
+  15:Core/Src/led.c **** {
+  69              		.loc 1 15 1 is_stmt 1 view -0
+  70              		.cfi_startproc
+  71              		@ args = 0, pretend = 0, frame = 0
+  72              		@ frame_needed = 0, uses_anonymous_args = 0
+  73 0000 08B5     		push	{r3, lr}
+  74              	.LCFI1:
+  75              		.cfi_def_cfa_offset 8
+  76              		.cfi_offset 3, -8
+  77              		.cfi_offset 14, -4
+  16:Core/Src/led.c ****     uint16_t all = GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11
+  78              		.loc 1 16 5 view .LVU5
+  79              	.LVL2:
+  17:Core/Src/led.c ****                   |GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15;
+  18:Core/Src/led.c ****     HAL_GPIO_WritePin(GPIOC, all, GPIO_PIN_SET);
+  80              		.loc 1 18 5 view .LVU6
+  81 0002 0122     		movs	r2, #1
+  82 0004 4FF47F41 		mov	r1, #65280
+  83 0008 0248     		ldr	r0, .L7
+  84 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+  85              	.LVL3:
+  19:Core/Src/led.c ****     LED_UpdateLatch();
+  86              		.loc 1 19 5 view .LVU7
+  87 000e FFF7FEFF 		bl	LED_UpdateLatch
+  88              	.LVL4:
+  20:Core/Src/led.c **** }
+  89              		.loc 1 20 1 is_stmt 0 view .LVU8
+  90 0012 08BD     		pop	{r3, pc}
+  91              	.L8:
+  92              		.align	2
+  93              	.L7:
+  94 0014 00080048 		.word	1207961600
+  95              		.cfi_endproc
+  96              	.LFE330:
+  98              		.section	.text.LED_On,"ax",%progbits
+ARM GAS  C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s 			page 3
+
+
+  99              		.align	1
+ 100              		.global	LED_On
+ 101              		.syntax unified
+ 102              		.thumb
+ 103              		.thumb_func
+ 105              	LED_On:
+ 106              	.LVL5:
+ 107              	.LFB331:
+  21:Core/Src/led.c **** 
+  22:Core/Src/led.c **** void LED_On(uint8_t index)
+  23:Core/Src/led.c **** {
+ 108              		.loc 1 23 1 is_stmt 1 view -0
+ 109              		.cfi_startproc
+ 110              		@ args = 0, pretend = 0, frame = 0
+ 111              		@ frame_needed = 0, uses_anonymous_args = 0
+ 112              		.loc 1 23 1 is_stmt 0 view .LVU10
+ 113 0000 08B5     		push	{r3, lr}
+ 114              	.LCFI2:
+ 115              		.cfi_def_cfa_offset 8
+ 116              		.cfi_offset 3, -8
+ 117              		.cfi_offset 14, -4
+  24:Core/Src/led.c ****     if(index < 8)
+ 118              		.loc 1 24 5 is_stmt 1 view .LVU11
+ 119              		.loc 1 24 7 is_stmt 0 view .LVU12
+ 120 0002 0728     		cmp	r0, #7
+ 121 0004 02D9     		bls	.L12
+ 122              	.LVL6:
+ 123              	.L10:
+  25:Core/Src/led.c ****         HAL_GPIO_WritePin(GPIOC, led_pins[index], GPIO_PIN_RESET);
+  26:Core/Src/led.c ****     LED_UpdateLatch();
+ 124              		.loc 1 26 5 is_stmt 1 view .LVU13
+ 125 0006 FFF7FEFF 		bl	LED_UpdateLatch
+ 126              	.LVL7:
+  27:Core/Src/led.c **** }
+ 127              		.loc 1 27 1 is_stmt 0 view .LVU14
+ 128 000a 08BD     		pop	{r3, pc}
+ 129              	.LVL8:
+ 130              	.L12:
+  25:Core/Src/led.c ****         HAL_GPIO_WritePin(GPIOC, led_pins[index], GPIO_PIN_RESET);
+ 131              		.loc 1 25 9 is_stmt 1 view .LVU15
+ 132 000c 0022     		movs	r2, #0
+ 133 000e 034B     		ldr	r3, .L13
+ 134 0010 33F81010 		ldrh	r1, [r3, r0, lsl #1]
+ 135 0014 0248     		ldr	r0, .L13+4
+ 136              	.LVL9:
+  25:Core/Src/led.c ****         HAL_GPIO_WritePin(GPIOC, led_pins[index], GPIO_PIN_RESET);
+ 137              		.loc 1 25 9 is_stmt 0 view .LVU16
+ 138 0016 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 139              	.LVL10:
+ 140 001a F4E7     		b	.L10
+ 141              	.L14:
+ 142              		.align	2
+ 143              	.L13:
+ 144 001c 00000000 		.word	.LANCHOR0
+ 145 0020 00080048 		.word	1207961600
+ 146              		.cfi_endproc
+ 147              	.LFE331:
+ARM GAS  C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s 			page 4
+
+
+ 149              		.section	.text.LED_Off,"ax",%progbits
+ 150              		.align	1
+ 151              		.global	LED_Off
+ 152              		.syntax unified
+ 153              		.thumb
+ 154              		.thumb_func
+ 156              	LED_Off:
+ 157              	.LVL11:
+ 158              	.LFB332:
+  28:Core/Src/led.c **** 
+  29:Core/Src/led.c **** void LED_Off(uint8_t index)
+  30:Core/Src/led.c **** {
+ 159              		.loc 1 30 1 is_stmt 1 view -0
+ 160              		.cfi_startproc
+ 161              		@ args = 0, pretend = 0, frame = 0
+ 162              		@ frame_needed = 0, uses_anonymous_args = 0
+ 163              		.loc 1 30 1 is_stmt 0 view .LVU18
+ 164 0000 08B5     		push	{r3, lr}
+ 165              	.LCFI3:
+ 166              		.cfi_def_cfa_offset 8
+ 167              		.cfi_offset 3, -8
+ 168              		.cfi_offset 14, -4
+  31:Core/Src/led.c ****     if(index < 8)
+ 169              		.loc 1 31 5 is_stmt 1 view .LVU19
+ 170              		.loc 1 31 7 is_stmt 0 view .LVU20
+ 171 0002 0728     		cmp	r0, #7
+ 172 0004 02D9     		bls	.L18
+ 173              	.LVL12:
+ 174              	.L16:
+  32:Core/Src/led.c ****         HAL_GPIO_WritePin(GPIOC, led_pins[index], GPIO_PIN_SET);
+  33:Core/Src/led.c ****     LED_UpdateLatch();
+ 175              		.loc 1 33 5 is_stmt 1 view .LVU21
+ 176 0006 FFF7FEFF 		bl	LED_UpdateLatch
+ 177              	.LVL13:
+  34:Core/Src/led.c **** }
+ 178              		.loc 1 34 1 is_stmt 0 view .LVU22
+ 179 000a 08BD     		pop	{r3, pc}
+ 180              	.LVL14:
+ 181              	.L18:
+  32:Core/Src/led.c ****         HAL_GPIO_WritePin(GPIOC, led_pins[index], GPIO_PIN_SET);
+ 182              		.loc 1 32 9 is_stmt 1 view .LVU23
+ 183 000c 0122     		movs	r2, #1
+ 184 000e 034B     		ldr	r3, .L19
+ 185 0010 33F81010 		ldrh	r1, [r3, r0, lsl #1]
+ 186 0014 0248     		ldr	r0, .L19+4
+ 187              	.LVL15:
+  32:Core/Src/led.c ****         HAL_GPIO_WritePin(GPIOC, led_pins[index], GPIO_PIN_SET);
+ 188              		.loc 1 32 9 is_stmt 0 view .LVU24
+ 189 0016 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 190              	.LVL16:
+ 191 001a F4E7     		b	.L16
+ 192              	.L20:
+ 193              		.align	2
+ 194              	.L19:
+ 195 001c 00000000 		.word	.LANCHOR0
+ 196 0020 00080048 		.word	1207961600
+ 197              		.cfi_endproc
+ARM GAS  C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s 			page 5
+
+
+ 198              	.LFE332:
+ 200              		.section	.text.LED_Flash,"ax",%progbits
+ 201              		.align	1
+ 202              		.global	LED_Flash
+ 203              		.syntax unified
+ 204              		.thumb
+ 205              		.thumb_func
+ 207              	LED_Flash:
+ 208              	.LVL17:
+ 209              	.LFB333:
+  35:Core/Src/led.c **** 
+  36:Core/Src/led.c **** void LED_Flash(uint8_t index)
+  37:Core/Src/led.c **** {
+ 210              		.loc 1 37 1 is_stmt 1 view -0
+ 211              		.cfi_startproc
+ 212              		@ args = 0, pretend = 0, frame = 0
+ 213              		@ frame_needed = 0, uses_anonymous_args = 0
+ 214              		.loc 1 37 1 is_stmt 0 view .LVU26
+ 215 0000 10B5     		push	{r4, lr}
+ 216              	.LCFI4:
+ 217              		.cfi_def_cfa_offset 8
+ 218              		.cfi_offset 4, -8
+ 219              		.cfi_offset 14, -4
+ 220 0002 0446     		mov	r4, r0
+  38:Core/Src/led.c ****     LED_On(index);
+ 221              		.loc 1 38 5 is_stmt 1 view .LVU27
+ 222 0004 FFF7FEFF 		bl	LED_On
+ 223              	.LVL18:
+  39:Core/Src/led.c ****     HAL_Delay(200);
+ 224              		.loc 1 39 5 view .LVU28
+ 225 0008 C820     		movs	r0, #200
+ 226 000a FFF7FEFF 		bl	HAL_Delay
+ 227              	.LVL19:
+  40:Core/Src/led.c ****     LED_Off(index);
+ 228              		.loc 1 40 5 view .LVU29
+ 229 000e 2046     		mov	r0, r4
+ 230 0010 FFF7FEFF 		bl	LED_Off
+ 231              	.LVL20:
+  41:Core/Src/led.c **** }
+ 232              		.loc 1 41 1 is_stmt 0 view .LVU30
+ 233 0014 10BD     		pop	{r4, pc}
+ 234              		.cfi_endproc
+ 235              	.LFE333:
+ 237              		.section	.text.LED_Set,"ax",%progbits
+ 238              		.align	1
+ 239              		.global	LED_Set
+ 240              		.syntax unified
+ 241              		.thumb
+ 242              		.thumb_func
+ 244              	LED_Set:
+ 245              	.LVL21:
+ 246              	.LFB334:
+  42:Core/Src/led.c **** 
+  43:Core/Src/led.c **** /* Keep old names for compatibility */
+  44:Core/Src/led.c **** void LED_Set(uint8_t index)   { LED_On(index); }
+ 247              		.loc 1 44 31 is_stmt 1 view -0
+ 248              		.cfi_startproc
+ARM GAS  C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s 			page 6
+
+
+ 249              		@ args = 0, pretend = 0, frame = 0
+ 250              		@ frame_needed = 0, uses_anonymous_args = 0
+ 251              		.loc 1 44 31 is_stmt 0 view .LVU32
+ 252 0000 08B5     		push	{r3, lr}
+ 253              	.LCFI5:
+ 254              		.cfi_def_cfa_offset 8
+ 255              		.cfi_offset 3, -8
+ 256              		.cfi_offset 14, -4
+ 257              		.loc 1 44 33 is_stmt 1 view .LVU33
+ 258 0002 FFF7FEFF 		bl	LED_On
+ 259              	.LVL22:
+ 260              		.loc 1 44 48 is_stmt 0 view .LVU34
+ 261 0006 08BD     		pop	{r3, pc}
+ 262              		.cfi_endproc
+ 263              	.LFE334:
+ 265              		.section	.text.LED_Clear,"ax",%progbits
+ 266              		.align	1
+ 267              		.global	LED_Clear
+ 268              		.syntax unified
+ 269              		.thumb
+ 270              		.thumb_func
+ 272              	LED_Clear:
+ 273              	.LVL23:
+ 274              	.LFB335:
+  45:Core/Src/led.c **** void LED_Clear(uint8_t index) { LED_Off(index); }
+ 275              		.loc 1 45 31 is_stmt 1 view -0
+ 276              		.cfi_startproc
+ 277              		@ args = 0, pretend = 0, frame = 0
+ 278              		@ frame_needed = 0, uses_anonymous_args = 0
+ 279              		.loc 1 45 31 is_stmt 0 view .LVU36
+ 280 0000 08B5     		push	{r3, lr}
+ 281              	.LCFI6:
+ 282              		.cfi_def_cfa_offset 8
+ 283              		.cfi_offset 3, -8
+ 284              		.cfi_offset 14, -4
+ 285              		.loc 1 45 33 is_stmt 1 view .LVU37
+ 286 0002 FFF7FEFF 		bl	LED_Off
+ 287              	.LVL24:
+ 288              		.loc 1 45 49 is_stmt 0 view .LVU38
+ 289 0006 08BD     		pop	{r3, pc}
+ 290              		.cfi_endproc
+ 291              	.LFE335:
+ 293              		.section	.rodata.led_pins,"a"
+ 294              		.align	2
+ 295              		.set	.LANCHOR0,. + 0
+ 298              	led_pins:
+ 299 0000 0001     		.short	256
+ 300 0002 0002     		.short	512
+ 301 0004 0004     		.short	1024
+ 302 0006 0008     		.short	2048
+ 303 0008 0010     		.short	4096
+ 304 000a 0020     		.short	8192
+ 305 000c 0040     		.short	16384
+ 306 000e 0080     		.short	-32768
+ 307              		.text
+ 308              	.Letext0:
+ 309              		.file 2 "c:\\arm\\gcc-arm-none-eabi\\10_2021.10\\arm-none-eabi\\include\\machine\\_default_types.h
+ARM GAS  C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s 			page 7
+
+
+ 310              		.file 3 "c:\\arm\\gcc-arm-none-eabi\\10_2021.10\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 311              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h"
+ 312              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h"
+ 313              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
+ARM GAS  C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 led.c
+C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s:20     .text.LED_UpdateLatch:00000000 $t
+C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s:26     .text.LED_UpdateLatch:00000000 LED_UpdateLatch
+C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s:56     .text.LED_UpdateLatch:0000001c $d
+C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s:61     .text.LED_AllOff:00000000 $t
+C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s:67     .text.LED_AllOff:00000000 LED_AllOff
+C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s:94     .text.LED_AllOff:00000014 $d
+C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s:99     .text.LED_On:00000000 $t
+C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s:105    .text.LED_On:00000000 LED_On
+C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s:144    .text.LED_On:0000001c $d
+C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s:150    .text.LED_Off:00000000 $t
+C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s:156    .text.LED_Off:00000000 LED_Off
+C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s:195    .text.LED_Off:0000001c $d
+C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s:201    .text.LED_Flash:00000000 $t
+C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s:207    .text.LED_Flash:00000000 LED_Flash
+C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s:238    .text.LED_Set:00000000 $t
+C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s:244    .text.LED_Set:00000000 LED_Set
+C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s:266    .text.LED_Clear:00000000 $t
+C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s:272    .text.LED_Clear:00000000 LED_Clear
+C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s:294    .rodata.led_pins:00000000 $d
+C:\Users\86133\AppData\Local\Temp\ccwhWuqX.s:298    .rodata.led_pins:00000000 led_pins
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
+HAL_Delay
