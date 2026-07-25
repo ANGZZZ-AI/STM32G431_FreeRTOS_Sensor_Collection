@@ -1,0 +1,61 @@
+﻿# STM32 GCC / Makefile build outputs
+build/
+Build/
+Debug/
+Release/
+out/
+bin/
+obj/
+*.o
+*.d
+*.elf
+*.axf
+*.hex
+*.bin
+*.map
+*.lst
+*.lss
+*.a
+
+# STM32CubeIDE / Eclipse
+.metadata/
+.settings/
+.externalToolBuilders/
+
+# VS Code local files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.example.json
+.vs/
+.vscode-history/
+.history/
+compile_commands.json
+
+# CMake / Ninja
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+.ninja_deps
+.ninja_log
+build.ninja
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+
+# Windows / macOS / Linux
+Thumbs.db
+Desktop.ini
+.DS_Store
+.directory
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
