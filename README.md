@@ -16,7 +16,6 @@
 | 项目 | 配置 |
 | --- | --- |
 | MCU | STM32G431RBT6 |
-| 开发板 | CT117E-M4 |
 | RTOS | FreeRTOS |
 | 编译器 | arm-none-eabi-gcc |
 | 构建工具 | GNU Make |
