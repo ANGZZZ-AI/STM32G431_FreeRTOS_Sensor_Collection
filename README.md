@@ -1,6 +1,6 @@
 # STM32G431 FreeRTOS Sensor Collection
 
-基于 STM32G431RBT6 和 CT117E-M4 蓝桥开发板的 FreeRTOS 多传感器采集终端。项目使用 VS Code、STM32CubeMX、GCC、Makefile 和 OpenOCD 构建，脱离 Keil 完成嵌入式软件开发。
+基于 STM32G431RBT6 和  FreeRTOS 的多传感器采集终端。项目使用 VS Code、STM32CubeMX、GCC、Makefile 和 OpenOCD 构建，脱离 Keil 完成嵌入式软件开发。
 
 ## 主要功能
 - PA1 电位器 ADC 电压采集
